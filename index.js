@@ -10,7 +10,9 @@ async function main() {
     false /* do not use TurboWarp servers */
   );
 
+  session.set("☁️ TEST", 500);
+
   session.on("set", (name, value) => {
-    session.set("TEST", 500);
+    console.log(`${name} was set to ${value}.`);
   });
 }
