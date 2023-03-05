@@ -28,7 +28,7 @@ async function main() {
       }
       if(name === "DATA_STATUS" && value === 2){
         if(strToNum.decode(session.get("CURRENT_USER")) in data){
-          session.set("DATA", strToNum.decode(data[strToNum.encode(session.get("CURRENT_USER"))]));
+          session.set("DATA", data.strToNum.encode(session.get("CURRENT_USER")));
           success = true;
           console.log("Data retrieved. User: " + strToNum.decode(session.get("CURRENT_USER")));
         }
