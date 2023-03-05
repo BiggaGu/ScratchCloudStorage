@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "@errorgamer2000/scratch-cloud": "^0.1.0",
-    "node": "^16.15.1",
+    "node": "^19.5.1",
     "scratch3-api": "^4.1.2",
     "stringstonumbers": "^5.1.0"
   },
