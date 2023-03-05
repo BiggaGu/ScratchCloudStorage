@@ -10,8 +10,6 @@ async function main() {
     false /* do not use TurboWarp servers */
   );
 
-  session.enableAutoPrefix();
-
   session.on("set", (name, value) => {
     session.set("TEST", 500);
   });
