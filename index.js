@@ -16,34 +16,30 @@ async function main() {
     );
 
     session.on("set", (name, value) => {
-      if(name === "DATA_STATUS" && value === 1){
-        if(strToNum.decode(session.get("CURRENT_USER")) in data){
-          data.strToNum.decode(session.get("CURRENT_USER")) = strToNum.decode(session.get("DATA"));
-        } else {
-          data[strToNum.decode(session.get("CURRENT_USER"))] = strToNum.decode(session.get("DATA"));
-        }
-        
+    if(name === "DATA_STATUS" && value === 1){
+      if(strToNum.decode(session.get("CURRENT_USER")) in data){
+        data[strToNum.decode(session.get("CURRENT_USER"))] = strToNum.decode(session.get("DATA"));
+      } else {
+        data[strToNum.decode(session.get("CURRENT_USER"))] = strToNum.decode(session.get("DATA"));
+      }
+      
+      success = true;
+      console.log("New data added. User: " + strToNum.decode(session.get("CURRENT_USER")));
+    }
+    if(name === "DATA_STATUS" && value === 2){
+      if(strToNum.decode(session.get("CURRENT_USER")) in data){
+        session.set("DATA", data[strToNum.decode(session.get("CURRENT_USER"))]);
         success = true;
-        console.log("New data added. User: " + strToNum.decode(session.get("CURRENT_USER")));
+        console.log("Data retrieved. User: " + strToNum.decode(session.get("CURRENT_USER")));
       }
-      if(name === "DATA_STATUS" && value === 2){
-        if(strToNum.decode(session.get("CURRENT_USER")) in data){
-          session.set("DATA", data.strToNum.encode(strToNum.decode(session.get("CURRENT_USER"))));
-          success = true;
-          console.log("Data retrieved. User: " + strToNum.decode(session.get("CURRENT_USER")));
-        }
-      }
-      session.set("DATA_STATUS", 0);
-    });
-
+    }
+    session.set("DATA_STATUS", 0);
+    
     if (success) {
       console.log("Cloud variable was set successfully!");
     } else {
       console.log("Failed to set cloud variable. Please check the name and value.");
     }
-  } catch (error) {
-    console.error(error);
-  }
-}
+});
 
 main();
