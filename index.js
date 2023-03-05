@@ -18,9 +18,9 @@ async function main() {
     session.on("set", (name, value) => {
       if(name === "DATA_STATUS" && value === 1){
         if(strToNum.decode(session.get("CURRENT_USER")) in data){
-          data[strToNum.decode(session.get("CURRENT_USER"))] = strToNum.encode(session.get("DATA"));
+          data.strToNum.decode(session.get("CURRENT_USER")) = strToNum.decode(session.get("DATA"));
         } else {
-          data[strToNum.encode(session.get("CURRENT_USER"))] = strToNum.encode(session.get("DATA"));
+          data[strToNum.decode(session.get("CURRENT_USER"))] = strToNum.decode(session.get("DATA"));
         }
         
         success = true;
@@ -28,7 +28,7 @@ async function main() {
       }
       if(name === "DATA_STATUS" && value === 2){
         if(strToNum.decode(session.get("CURRENT_USER")) in data){
-          session.set("DATA", data.strToNum.encode(session.get("CURRENT_USER")));
+          session.set("DATA", data.strToNum.encode(strToNum.decode(session.get("CURRENT_USER"))));
           success = true;
           console.log("Data retrieved. User: " + strToNum.decode(session.get("CURRENT_USER")));
         }
