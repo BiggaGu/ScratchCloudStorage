@@ -1,18 +1,52 @@
 import { ScratchCloud } from "@errorgamer2000/scratch-cloud";
+import strToNum from "stringstonumbers";
 
 async function main() {
-  const cloud = new ScratchCloud();
+  try {
+    const cloud = new ScratchCloud();
 
-  await cloud.login("Thought_Code", "back2front!");
+    await cloud.login("Thought_Bot", "back2front!");
 
-  const session = cloud.createSession(
-    "813752626",
-    false /* do not use TurboWarp servers */
-  );
+    var data = {
 
-  session.set("☁️ TEST", 500);
+    }
 
-  session.on("set", (name, value) => {
-    console.log(`${name} was set to ${value}.`);
-  });
+    const session = cloud.createSession(
+      "813752626",
+      false /* do not use TurboWarp servers */
+    );
+
+    let success = false;
+
+    session.on("set", (name, value) => {
+      if(name === "DATA_STATUS" && value === 1){
+        if(strToNum.decode(session.get("CURRENT_USER")) in data){
+          data.strToNum.decode(session.get("CURRENT_USER")) = strToNum.encode(session.get("DATA"));
+        } else {
+          data[strToNum.encode(session.get("CURRENT_USER"))] = strToNum.encode(session.get("DATA"));
+        }
+        
+        success = true;
+        console.log("New data added. User: " + strToNum.decode(session.get("CURRENT_USER")));
+      }
+      if(name === "DATA_STATUS" && value === 2){
+        if(strToNum.decode(session.get("CURRENT_USER")) in data){
+          session.set("DATA", strToNum.decode(data.session.get("CURRENT_USER")));
+          success = true;
+          console.log("Data retrieved. User: " + strToNum.decode(session.get("CURRENT_USER")));
+        }
+      }
+      session.set("DATA_STATUS", 0);
+    });
+
+    if (success) {
+      console.log("Cloud variable was set successfully!");
+    } else {
+      console.log("Failed to set cloud variable. Please check the name and value.");
+    }
+  } catch (error) {
+    console.error(error);
+  }
 }
+
+main();

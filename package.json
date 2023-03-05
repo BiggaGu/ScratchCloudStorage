@@ -2,7 +2,8 @@
   "dependencies": {
     "@errorgamer2000/scratch-cloud": "^0.1.0",
     "node": "^19.6.1",
-    "scratch3-api": "^4.1.2"
+    "scratch3-api": "^4.1.2",
+    "stringstonumbers": "^5.1.0"
   },
   "name": "scratchcloudstorage",
   "version": "1.0.0",
