@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "@errorgamer2000/scratch-cloud": "^0.1.0",
+    "node": "^19.6.1",
+    "scratch3-api": "^4.1.2"
+  },
+  "name": "scratchcloudstorage",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BiggaGu/ScratchCloudStorage.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BiggaGu/ScratchCloudStorage/issues"
+  },
+  "homepage": "https://github.com/BiggaGu/ScratchCloudStorage#readme",
+  "description": ""
+}
